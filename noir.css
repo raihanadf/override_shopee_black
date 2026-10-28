@@ -1,0 +1,270 @@
+/* shopee noir: black, flat, quiet. everything is scoped under html[data-noir] so the popup toggle can switch it off */
+
+html[data-noir] {
+  --noir-bg: #000;
+  --noir-raise: #0a0a0a;
+  --noir-line: #1c1c1c;
+  --noir-text: #d6d6d6;
+  --noir-dim: #6b6b6b;
+  --noir-hi: #fff;
+  color-scheme: dark;
+  scrollbar-color: #2a2a2a #000;
+  scrollbar-width: thin;
+}
+
+/* shopee hashes most class names, so the base layer hits every element instead of chasing selectors */
+html[data-noir] *,
+html[data-noir] *::before,
+html[data-noir] *::after {
+  background-color: var(--noir-bg) !important;
+  color: var(--noir-text) !important;
+  border-color: var(--noir-line) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border-radius: 0 !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  outline-color: var(--noir-hi) !important;
+}
+
+/* pseudo elements are mostly decoration (ribbons, dots, triangles), let them go transparent */
+html[data-noir] *::before,
+html[data-noir] *::after {
+  background-color: transparent !important;
+}
+
+/* media keeps its own colors */
+html[data-noir] img,
+html[data-noir] video,
+html[data-noir] canvas,
+html[data-noir] picture {
+  background-color: transparent !important;
+}
+
+/* monochrome icons, but keep outline-only icons hollow */
+html[data-noir] svg {
+  background-color: transparent !important;
+  color: var(--noir-text) !important;
+}
+html[data-noir] svg [fill]:not([fill="none"]),
+html[data-noir] svg path:not([fill]) {
+  fill: currentColor !important;
+}
+html[data-noir] svg [stroke]:not([stroke="none"]) {
+  stroke: currentColor !important;
+}
+
+/* kill the orange gradients (header, flash sale strips, vouchers) */
+html[data-noir] [style*="gradient"],
+html[data-noir] .shopee-top,
+html[data-noir] .header-with-search-wrapper,
+html[data-noir] .shopee-header-section,
+html[data-noir] [class*="header"],
+html[data-noir] [class*="voucher"],
+html[data-noir] [class*="flash-sale"] {
+  background-image: none !important;
+}
+
+/* header: one hairline, nothing else */
+html[data-noir] .shopee-top,
+html[data-noir] .header-with-search-wrapper,
+html[data-noir] header {
+  border-bottom: 1px solid var(--noir-line) !important;
+}
+
+/* text hierarchy: white for what matters, grey for the rest */
+html[data-noir] h1,
+html[data-noir] h2,
+html[data-noir] h3,
+html[data-noir] strong,
+html[data-noir] b,
+html[data-noir] [class*="price" i],
+html[data-noir] [class*="title" i] {
+  color: var(--noir-hi) !important;
+}
+html[data-noir] small,
+html[data-noir] [class*="sold" i],
+html[data-noir] [class*="location" i],
+html[data-noir] [class*="subtitle" i],
+html[data-noir] [class*="desc" i] {
+  color: var(--noir-dim) !important;
+}
+html[data-noir] [class*="price" i] {
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* links: no color, just a hover underline */
+html[data-noir] a {
+  text-decoration: none !important;
+}
+html[data-noir] a:hover {
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+}
+
+/* inputs: bare, underline only */
+html[data-noir] input,
+html[data-noir] textarea,
+html[data-noir] select {
+  background-color: var(--noir-bg) !important;
+  color: var(--noir-hi) !important;
+  caret-color: var(--noir-hi) !important;
+  border: 0 !important;
+  border-bottom: 1px solid #333 !important;
+}
+html[data-noir] input::placeholder,
+html[data-noir] textarea::placeholder {
+  color: var(--noir-dim) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+}
+html[data-noir] input:focus,
+html[data-noir] textarea:focus {
+  border-bottom-color: var(--noir-hi) !important;
+}
+
+/* buttons: thin outline, small caps, invert on hover */
+html[data-noir] button,
+html[data-noir] [role="button"],
+html[data-noir] [class*="btn" i],
+html[data-noir] [class*="button" i] {
+  border: 1px solid #333 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  font-size: 11px !important;
+  transition: background-color 0.15s, color 0.15s !important;
+}
+html[data-noir] button:hover,
+html[data-noir] [role="button"]:hover,
+html[data-noir] [class*="btn" i]:hover,
+html[data-noir] [class*="button" i]:hover {
+  background-color: var(--noir-hi) !important;
+  color: var(--noir-bg) !important;
+  border-color: var(--noir-hi) !important;
+}
+html[data-noir] button:hover *,
+html[data-noir] [class*="btn" i]:hover *,
+html[data-noir] [class*="button" i]:hover * {
+  background-color: transparent !important;
+  color: var(--noir-bg) !important;
+}
+
+/* the main call to action (buy now, checkout, place order) is solid white */
+html[data-noir] [class*="solid-primary" i],
+html[data-noir] [class*="solid--primary" i],
+html[data-noir] [class*="btn-solid" i] {
+  background-color: var(--noir-hi) !important;
+  color: var(--noir-bg) !important;
+  border-color: var(--noir-hi) !important;
+}
+html[data-noir] [class*="solid-primary" i] *,
+html[data-noir] [class*="solid--primary" i] *,
+html[data-noir] [class*="btn-solid" i] * {
+  background-color: transparent !important;
+  color: var(--noir-bg) !important;
+}
+html[data-noir] [class*="solid-primary" i]:hover,
+html[data-noir] [class*="solid--primary" i]:hover,
+html[data-noir] [class*="btn-solid" i]:hover {
+  background-color: var(--noir-bg) !important;
+  color: var(--noir-hi) !important;
+}
+html[data-noir] [class*="solid-primary" i]:hover *,
+html[data-noir] [class*="solid--primary" i]:hover *,
+html[data-noir] [class*="btn-solid" i]:hover * {
+  color: var(--noir-hi) !important;
+}
+
+/* product cards: shopee's card is hidden, content.js puts name / shop / price in its place */
+.noir-card {
+  display: none;
+}
+html[data-noir] [data-noir-card] > :not(.noir-card) {
+  display: none !important;
+}
+html[data-noir] [data-noir-card] {
+  display: block !important;
+  height: auto !important;
+  text-decoration: none !important;
+}
+html[data-noir] .noir-card {
+  display: flex !important;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 14px !important;
+  border-top: 1px solid var(--noir-line) !important;
+  transition: background-color 0.15s !important;
+}
+html[data-noir] [data-noir-card]:hover .noir-card,
+html[data-noir] [data-noir-card]:hover .noir-card * {
+  background-color: var(--noir-raise) !important;
+}
+html[data-noir] .noir-name {
+  color: var(--noir-hi) !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+html[data-noir] .noir-shop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--noir-dim) !important;
+  font-size: 11px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+html[data-noir] .noir-shop span {
+  color: var(--noir-dim) !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+html[data-noir] .noir-shop em {
+  font-style: normal;
+  font-size: 9px !important;
+  padding: 1px 5px !important;
+  border: 1px solid var(--noir-dim) !important;
+  color: var(--noir-text) !important;
+}
+html[data-noir] .noir-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 4px;
+}
+html[data-noir] .noir-price b {
+  color: var(--noir-hi) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+}
+html[data-noir] .noir-price s {
+  color: var(--noir-dim) !important;
+  font-size: 11px !important;
+}
+html[data-noir] .noir-price i {
+  font-style: normal;
+  color: var(--noir-text) !important;
+  font-size: 11px !important;
+}
+
+/* noise: homepage banners, carousels, promo popups, floating widgets */
+html[data-noir] .home-banners,
+html[data-noir] .image-carousel,
+html[data-noir] [class*="banner" i]:not(img),
+html[data-noir] .shopee-popup,
+html[data-noir] .home-popup,
+html[data-noir] [class*="floating-banner" i],
+html[data-noir] [class*="mini-game" i],
+html[data-noir] [class*="shopee-live" i] {
+  display: none !important;
+}
+
+html[data-noir] ::selection {
+  background: var(--noir-hi) !important;
+  color: var(--noir-bg) !important;
+}
