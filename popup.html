@@ -6,9 +6,9 @@
       body {
         margin: 0;
         width: 180px;
-        background: #000;
-        color: #fff;
-        font: 11px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background: #fff;
+        color: #000;
+        font: 12px/1.4 ui-monospace, Menlo, monospace;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
@@ -22,12 +22,13 @@
         cursor: pointer;
       }
       button:hover {
-        background: #111;
+        background: #f2f2f2;
       }
     </style>
   </head>
   <body>
-    <button id="toggle"><span>Noir</span><span id="state">…</span></button>
+    <button id="enabled"><span>Noir</span><span class="state">…</span></button>
+    <button id="dark"><span>Dark</span><span class="state">…</span></button>
     <script src="popup.js"></script>
   </body>
 </html>

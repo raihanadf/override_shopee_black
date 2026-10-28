@@ -19,7 +19,6 @@
   ],
   "host_permissions": [
     "*://*.shopee.co.id/*",
-    "*://*.shopee.com/*",
     "*://*.shopee.sg/*",
     "*://*.shopee.com.my/*",
     "*://*.shopee.ph/*",
@@ -32,7 +31,6 @@
     {
       "matches": [
         "*://*.shopee.co.id/*",
-        "*://*.shopee.com/*",
         "*://*.shopee.sg/*",
         "*://*.shopee.com.my/*",
         "*://*.shopee.ph/*",
@@ -52,7 +50,6 @@
     {
       "matches": [
         "*://*.shopee.co.id/*",
-        "*://*.shopee.com/*",
         "*://*.shopee.sg/*",
         "*://*.shopee.com.my/*",
         "*://*.shopee.ph/*",
@@ -71,5 +68,22 @@
   "action": {
     "default_title": "Shopee Noir",
     "default_popup": "popup.html"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "fonts/*.woff2"
+      ],
+      "matches": [
+        "*://*.shopee.co.id/*",
+        "*://*.shopee.sg/*",
+        "*://*.shopee.com.my/*",
+        "*://*.shopee.ph/*",
+        "*://*.shopee.vn/*",
+        "*://*.shopee.co.th/*",
+        "*://*.shopee.tw/*",
+        "*://*.shopee.com.br/*"
+      ]
+    }
+  ]
 }

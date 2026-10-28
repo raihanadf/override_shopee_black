@@ -1,9 +1,9 @@
 // runs in the page itself: watches shopee's own api responses and hands any product objects to content.js
 (() => {
-  // shopee nests items differently per endpoint, so just look for anything shaped like a product
+  // shopee nests items differently per endpoint, so take anything carrying an item id and shop id
   function walk(node, found) {
     if (!node || typeof node !== "object") return found;
-    if (node.itemid && node.shopid && node.name && node.price !== undefined) {
+    if (node.itemid && node.shopid) {
       found.push(node);
       return found;
     }
@@ -20,7 +20,8 @@
       return;
     }
     const items = walk(json, []);
-    if (items.length) window.postMessage({ noir: "items", items }, location.origin);
+    console.debug("[noir]", String(url).split("?")[0], items.length, "items", items[0]);
+    if (items.length) window.postMessage({ noir: "items", url: String(url), items }, location.origin);
   };
 
   const fetch = window.fetch;

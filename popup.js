@@ -1,13 +1,17 @@
-const state = document.getElementById("state");
-let enabled = true;
+const saved = { enabled: true, dark: false };
+const label = (key) => (document.querySelector(`#${key} .state`).textContent = saved[key] ? "On" : "Off");
 
-browser.storage.local.get("enabled").then((saved) => {
-  enabled = saved.enabled !== false;
-  state.textContent = enabled ? "On" : "Off";
+browser.storage.local.get(["enabled", "dark"]).then((stored) => {
+  saved.enabled = stored.enabled !== false;
+  saved.dark = stored.dark === true;
+  label("enabled");
+  label("dark");
 });
 
-document.getElementById("toggle").addEventListener("click", () => {
-  enabled = !enabled;
-  state.textContent = enabled ? "On" : "Off";
-  browser.storage.local.set({ enabled });
-});
+for (const key of ["enabled", "dark"]) {
+  document.getElementById(key).addEventListener("click", () => {
+    saved[key] = !saved[key];
+    label(key);
+    browser.storage.local.set({ [key]: saved[key] });
+  });
+}
